@@ -20,7 +20,7 @@ const stack = pulumi.getStack();
 
 let AMI_ID: pulumi.Input<string>;
 
-if (stack === "test") {
+if (stack === "localstack") {
     AMI_ID = "ami-0f09ed56128e994fe"; // This is your TEMP_ID
 } else {
     // Dynamically fetch the latest AMI ID for non-test stacks

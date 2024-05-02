@@ -7,8 +7,23 @@ const userData =
     `
     #!/bin/bash
     apt-get update
+    apt-get install curl
     apt-get install nginx -y
-    echo "Testing Nginx UserData" > /var/www/html/index.html
+    systemctl start nginx
+    systemctl enable nginx
+    mkdir /var/www/html/
+    git clone https://github.com/jeffersonRibeiro/react-shopping-cart
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+    source ~/.bashrc
+    nvm install 14.17.3
+    nvm use 14.17.3
+    cd react-shopping-cart
+    npm install
+    npm run build
+    cp -r build/* /var/www/html/
+    rm -rf build
+    systemctl restart nginx
+    echo "Done!"
     `;
 
 export function createEc2Instance(subnetId: pulumi.Input<string>, securityGroupId: pulumi.Input<string>) {
