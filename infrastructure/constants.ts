@@ -2,7 +2,7 @@ import * as aws from "@pulumi/aws";
 import * as pulumi from "@pulumi/pulumi";
 
 // AWS EC2 Instance Types
-export const EC2_INSTANCE_TYPE = "t2.micro";
+export const EC2_INSTANCE_TYPE = "t3a.small";
 
 // Tags for all resources
 export const COMMON_TAGS = {

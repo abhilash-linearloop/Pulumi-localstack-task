@@ -1,30 +1,5 @@
 # Pulumi-localstack-task
 
-
-
-install pulumi
-[choco install pulumi](https://www.pulumi.com/docs/install/)
-
-node 18
-
-pulumi up
-pulumi login
-pulumi logout
-pulumi destroy
-
-
-python 3.9.8
-pip install pulumi-local
-
-
-python (Python 3.7 up to 3.11 is supported)
-python -m pip install --upgrade localstack
-docker needed
-
-
-pulumi stack init test --copy-config-from localstack
-
-
 ### Prerequisites
 Before you start, ensure you have the following installed:
 
@@ -37,16 +12,17 @@ Before you start, ensure you have the following installed:
 
 ## Installation
 
-- #### AWS CLI
+- ### AWS CLI
     - Follow this link [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) and set up AWS CLI on your machine.
     - Configure AWS CLI using this link [AWSCLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html)
+    - Create the default AWS profile.
     - Once setup is done, Install Pulumi and LocalStack
 
-- #### Pulumi
+- ### Pulumi
 
     - Click on this link [Pulumi](https://www.pulumi.com/docs/install/) and follow the instructions to set up Pulumi in your machine
 
-- #### LocalStack
+- ### LocalStack
   
     - Need Docker to run LocalStack in your machine.
     - It is ideal to install LocalStack by following this [link](https://docs.localstack.cloud/getting-started/installation/).
@@ -76,12 +52,61 @@ Before you start, ensure you have the following installed:
 
 ## Deployment
 
-- #### Deploying Infra using Pulumi to AWS
+- ### Deploying Infra using Pulumi to AWS
 
     1. Clone project [Repo link](https://github.com/abhilash-linearloop/Pulumi-localstack-task.git)
+
     2. Assuming the above installation steps are completed. Follow the  below instructions
         ```
         cd Pulumi-localstack-task/infrastructure
         pulumi up
         ```
-    3. The above commands will provision required infrastructure for hosting react-shopping-cart app
+     [***NOTE: The above commands will provision the required infrastructure for hosting react-shopping-cart app using a default profile if the AWS profile is configured***]
+
+    3. Once you run `pulumi up` command you need to select `yes` option as shown in the image
+        <div align="center">
+            <img src="readme-images/update.png" alt="Updating Pulumi Resource" title="Updating Pulumi Resource"/>
+        </div>
+
+    4. Once pulumi provision infra, In output EC2 instance IP will be displayed.
+
+- ### Simulation for Infra using Pulumi and LocalStack
+
+    [***NOTE: The following section will provide detailed steps for this manual configuration, assuming you have Pulumi installed***]
+
+    1. Create a new stack from the existing stack using the below command
+        ```
+            pulumi stack init localstack --copy-config-from dev
+        ```
+    2. Once created new stack, copy the endpoints into the newly created stack file [***NOTE:- Currently it is already created]. Endpoints can be copied from this [URL](https://docs.localstack.cloud/user-guide/integrations/pulumi/)
+        ```
+            config:
+              aws:accessKey: test
+              aws:s3UsePathStyle: "true"
+              aws:secretKey: test
+              aws:skipCredentialsValidation: "true"
+              aws:skipRequestingAccountId: "true"
+              aws:region: us-east-2
+              aws:endpoints:
+                - ec2: http://localhost:4566
+        ```
+        Use the above config in the newly created stack file.
+    3. Once the configuration is updated in the new stack file. Run the following command to simulate using localstack
+        ```
+            pulumi stack ls
+            pulumi stack select localstack
+            pulumi up
+        ```
+        [***NOTE:- Make sure the LocalStack is running via docker or docker-compose before simulating above stack]
+
+[***NOTE:- Tried the Pulumi wrapper for LocalStack but it failed due the some errors***]
+
+## Differences or Limitations using the LocalStack in compared to the AWS Cloud
+- The current Setup faced an error regarding AMI lookup as AMI was missing in the LocalStack, so LocalStack does not have all data as per AWS real-time. [limitations]
+- Need to update LocalStack regularly if we are updating resources with the latest changes or keeping up to date.[limitations]
+- Working with LocalStack for simulating resource helps to boot confidence oneself 
+
+
+## Dockerfile for Web Application
+
+- Dockerfile is located at `react-shopping-cart\Dockerfile`
