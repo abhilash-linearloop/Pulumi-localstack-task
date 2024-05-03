@@ -1,4 +1,4 @@
 encryptionsalt: v1:YlLU1eLcKCA=:v1:mrYdHxaVqIyuRDbo:oOIEwYkNKQEA7FMiW8HW/8agKchvYw==
 config:
-  aws:profile: traek
+  aws:profile: default
   aws:region: us-east-2
