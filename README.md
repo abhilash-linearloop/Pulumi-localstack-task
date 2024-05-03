@@ -59,8 +59,11 @@ Before you start, ensure you have the following installed:
     2. Assuming the above installation steps are completed. Follow the  below instructions
         ```
         cd Pulumi-localstack-task/infrastructure
+        pulumi login 's3://<bucket-name>?region=us-east-1&awssdk=v2&profile=<profile-name>'  
+        pulumi stack init dev
         pulumi up
         ```
+     [***NOTE: Create Bucket and provide region and AWS profile name  and also need to give passphrase to protect your stack and enter the same passphrase***]   
      [***NOTE: The above commands will provision the required infrastructure for hosting react-shopping-cart app using a default profile if the AWS profile is configured***]
 
     3. Once you run `pulumi up` command you need to select `yes` option as shown in the image
@@ -93,11 +96,12 @@ Before you start, ensure you have the following installed:
         Use the above config in the newly created stack file.
     3. Once the configuration is updated in the new stack file. Run the following command to simulate using localstack
         ```
+            pulumi stack init localstack  [NOTE:- Enter passphrase]
             pulumi stack ls
             pulumi stack select localstack
             pulumi up
         ```
-        [***NOTE:- Make sure the LocalStack is running via docker or docker-compose before simulating above stack]
+        [***NOTE:- Make sure the LocalStack is running via docker or docker-compose before simulating above stack***]
 
 [***NOTE:- Tried the Pulumi wrapper for LocalStack but it failed due the some errors***]
 

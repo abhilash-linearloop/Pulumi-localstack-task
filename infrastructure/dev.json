@@ -1,0 +1,696 @@
+{
+    "version": 3,
+    "deployment": {
+        "manifest": {
+            "time": "2024-05-02T18:20:05.4782008+05:30",
+            "magic": "741ac0f75b0300e3ec670ffa6a94d59d085bb49acce397bedc200ca456a065c8",
+            "version": "v3.114.0"
+        },
+        "secrets_providers": {
+            "type": "service",
+            "state": {
+                "url": "https://api.pulumi.com",
+                "owner": "abhilash-linearloop",
+                "project": "infrastucture",
+                "stack": "localstack"
+            }
+        },
+        "resources": [
+            {
+                "urn": "urn:pulumi:localstack::infrastucture::pulumi:pulumi:Stack::infrastucture-localstack",
+                "custom": false,
+                "type": "pulumi:pulumi:Stack",
+                "outputs": {
+                    "publicIp": "54.214.71.15"
+                },
+                "created": "2024-05-02T12:49:17.5606564Z",
+                "modified": "2024-05-02T12:49:17.5606564Z"
+            },
+            {
+                "urn": "urn:pulumi:localstack::infrastucture::pulumi:providers:aws::default_6_32_0",
+                "custom": true,
+                "id": "4526f33a-1e17-432f-bc0a-5631d9326196",
+                "type": "pulumi:providers:aws",
+                "inputs": {
+                    "accessKey": "test",
+                    "endpoints": "[{\"ec2\":\"http://localhost:4566\"}]",
+                    "region": "us-east-2",
+                    "s3UsePathStyle": "true",
+                    "secretKey": "test",
+                    "skipCredentialsValidation": "true",
+                    "skipMetadataApiCheck": "true",
+                    "skipRegionValidation": "true",
+                    "skipRequestingAccountId": "true",
+                    "version": "6.32.0"
+                },
+                "outputs": {
+                    "accessKey": "test",
+                    "endpoints": "[{\"ec2\":\"http://localhost:4566\"}]",
+                    "region": "us-east-2",
+                    "s3UsePathStyle": "true",
+                    "secretKey": "test",
+                    "skipCredentialsValidation": "true",
+                    "skipMetadataApiCheck": "true",
+                    "skipRegionValidation": "true",
+                    "skipRequestingAccountId": "true",
+                    "version": "6.32.0"
+                },
+                "created": "2024-05-02T12:49:25.4815241Z",
+                "modified": "2024-05-02T12:49:25.4815241Z"
+            },
+            {
+                "urn": "urn:pulumi:localstack::infrastucture::aws:ec2/vpc:Vpc::webapp-vpc",
+                "custom": true,
+                "id": "vpc-10c19ea0",
+                "type": "aws:ec2/vpc:Vpc",
+                "inputs": {
+                    "__defaults": [],
+                    "cidrBlock": "192.168.0.0/16",
+                    "enableDnsHostnames": true,
+                    "enableDnsSupport": true,
+                    "tags": {
+                        "Environment": "Development",
+                        "Name": "LocalStack-VPC",
+                        "Project": "Pulumi",
+                        "Resource": "VPC"
+                    },
+                    "tagsAll": {
+                        "Environment": "Development",
+                        "Name": "LocalStack-VPC",
+                        "Project": "Pulumi",
+                        "Resource": "VPC"
+                    }
+                },
+                "outputs": {
+                    "__meta": "{\"schema_version\":\"1\"}",
+                    "arn": "arn:aws:ec2:us-east-2:000000000000:vpc/vpc-10c19ea0",
+                    "assignGeneratedIpv6CidrBlock": false,
+                    "cidrBlock": "192.168.0.0/16",
+                    "defaultNetworkAclId": "acl-662bbc32",
+                    "defaultRouteTableId": "rtb-51e6241c",
+                    "defaultSecurityGroupId": "sg-6270f92a370f3b23e",
+                    "dhcpOptionsId": "default",
+                    "enableDnsHostnames": true,
+                    "enableDnsSupport": true,
+                    "enableNetworkAddressUsageMetrics": false,
+                    "id": "vpc-10c19ea0",
+                    "instanceTenancy": "default",
+                    "ipv6AssociationId": "",
+                    "ipv6CidrBlock": "",
+                    "ipv6CidrBlockNetworkBorderGroup": "",
+                    "ipv6IpamPoolId": "",
+                    "ipv6NetmaskLength": 0,
+                    "mainRouteTableId": "rtb-51e6241c",
+                    "ownerId": "000000000000",
+                    "tags": {
+                        "Environment": "Development",
+                        "Name": "LocalStack-VPC",
+                        "Project": "Pulumi",
+                        "Resource": "VPC"
+                    },
+                    "tagsAll": {
+                        "Environment": "Development",
+                        "Name": "LocalStack-VPC",
+                        "Project": "Pulumi",
+                        "Resource": "VPC"
+                    }
+                },
+                "parent": "urn:pulumi:localstack::infrastucture::pulumi:pulumi:Stack::infrastucture-localstack",
+                "provider": "urn:pulumi:localstack::infrastucture::pulumi:providers:aws::default_6_32_0::4526f33a-1e17-432f-bc0a-5631d9326196",
+                "propertyDependencies": {
+                    "cidrBlock": [],
+                    "enableDnsHostnames": [],
+                    "enableDnsSupport": [],
+                    "tags": []
+                },
+                "created": "2024-05-02T12:49:39.0946701Z",
+                "modified": "2024-05-02T12:49:39.0946701Z"
+            },
+            {
+                "urn": "urn:pulumi:localstack::infrastucture::aws:ec2/internetGateway:InternetGateway::webapp-igw",
+                "custom": true,
+                "id": "igw-16c7c778",
+                "type": "aws:ec2/internetGateway:InternetGateway",
+                "inputs": {
+                    "__defaults": [],
+                    "tags": {
+                        "Environment": "Development",
+                        "Name": "LocalStack-VPC",
+                        "Project": "Pulumi",
+                        "Resource": "VPC"
+                    },
+                    "tagsAll": {
+                        "Environment": "Development",
+                        "Name": "LocalStack-VPC",
+                        "Project": "Pulumi",
+                        "Resource": "VPC"
+                    },
+                    "vpcId": "vpc-10c19ea0"
+                },
+                "outputs": {
+                    "__meta": "{\"e2bfb730-ecaa-11e6-8f88-34363bc7c4c0\":{\"create\":1200000000000,\"delete\":1200000000000,\"update\":1200000000000}}",
+                    "arn": "arn:aws:ec2:us-east-2:000000000000:internet-gateway/igw-16c7c778",
+                    "id": "igw-16c7c778",
+                    "ownerId": "000000000000",
+                    "tags": {
+                        "Environment": "Development",
+                        "Name": "LocalStack-VPC",
+                        "Project": "Pulumi",
+                        "Resource": "VPC"
+                    },
+                    "tagsAll": {
+                        "Environment": "Development",
+                        "Name": "LocalStack-VPC",
+                        "Project": "Pulumi",
+                        "Resource": "VPC"
+                    },
+                    "vpcId": "vpc-10c19ea0"
+                },
+                "parent": "urn:pulumi:localstack::infrastucture::pulumi:pulumi:Stack::infrastucture-localstack",
+                "dependencies": [
+                    "urn:pulumi:localstack::infrastucture::aws:ec2/vpc:Vpc::webapp-vpc"
+                ],
+                "provider": "urn:pulumi:localstack::infrastucture::pulumi:providers:aws::default_6_32_0::4526f33a-1e17-432f-bc0a-5631d9326196",
+                "propertyDependencies": {
+                    "tags": [],
+                    "vpcId": [
+                        "urn:pulumi:localstack::infrastucture::aws:ec2/vpc:Vpc::webapp-vpc"
+                    ]
+                },
+                "created": "2024-05-02T12:49:40.818492Z",
+                "modified": "2024-05-02T12:49:40.818492Z"
+            },
+            {
+                "urn": "urn:pulumi:localstack::infrastucture::aws:ec2/securityGroup:SecurityGroup::webapp-secgrp",
+                "custom": true,
+                "id": "sg-f01e5ada1f8697b50",
+                "type": "aws:ec2/securityGroup:SecurityGroup",
+                "inputs": {
+                    "__defaults": [
+                        "name",
+                        "revokeRulesOnDelete"
+                    ],
+                    "description": "Managed by Pulumi",
+                    "egress": [
+                        {
+                            "__defaults": [
+                                "self"
+                            ],
+                            "cidrBlocks": [
+                                "0.0.0.0/0"
+                            ],
+                            "fromPort": 0,
+                            "protocol": "-1",
+                            "self": false,
+                            "toPort": 0
+                        }
+                    ],
+                    "ingress": [
+                        {
+                            "__defaults": [
+                                "self"
+                            ],
+                            "cidrBlocks": [
+                                "0.0.0.0/0"
+                            ],
+                            "fromPort": 22,
+                            "protocol": "tcp",
+                            "self": false,
+                            "toPort": 22
+                        },
+                        {
+                            "__defaults": [
+                                "self"
+                            ],
+                            "cidrBlocks": [
+                                "0.0.0.0/0"
+                            ],
+                            "fromPort": 80,
+                            "protocol": "tcp",
+                            "self": false,
+                            "toPort": 80
+                        },
+                        {
+                            "__defaults": [
+                                "self"
+                            ],
+                            "cidrBlocks": [
+                                "0.0.0.0/0"
+                            ],
+                            "fromPort": 443,
+                            "protocol": "tcp",
+                            "self": false,
+                            "toPort": 443
+                        }
+                    ],
+                    "name": "webapp-secgrp-1a73e76",
+                    "revokeRulesOnDelete": false,
+                    "tags": {
+                        "Environment": "Development",
+                        "Name": "LocalStack-EC2",
+                        "Project": "Pulumi",
+                        "Resource": "EC2"
+                    },
+                    "tagsAll": {
+                        "Environment": "Development",
+                        "Name": "LocalStack-EC2",
+                        "Project": "Pulumi",
+                        "Resource": "EC2"
+                    },
+                    "vpcId": "vpc-10c19ea0"
+                },
+                "outputs": {
+                    "__meta": "{\"e2bfb730-ecaa-11e6-8f88-34363bc7c4c0\":{\"create\":600000000000,\"delete\":900000000000},\"schema_version\":\"1\"}",
+                    "arn": "arn:aws:ec2:us-east-2:000000000000:security-group/sg-f01e5ada1f8697b50",
+                    "description": "Managed by Pulumi",
+                    "egress": [
+                        {
+                            "cidrBlocks": [
+                                "0.0.0.0/0"
+                            ],
+                            "description": "",
+                            "fromPort": 0,
+                            "ipv6CidrBlocks": [],
+                            "prefixListIds": [],
+                            "protocol": "-1",
+                            "securityGroups": [],
+                            "self": false,
+                            "toPort": 0
+                        }
+                    ],
+                    "id": "sg-f01e5ada1f8697b50",
+                    "ingress": [
+                        {
+                            "cidrBlocks": [
+                                "0.0.0.0/0"
+                            ],
+                            "description": "",
+                            "fromPort": 80,
+                            "ipv6CidrBlocks": [],
+                            "prefixListIds": [],
+                            "protocol": "tcp",
+                            "securityGroups": [],
+                            "self": false,
+                            "toPort": 80
+                        },
+                        {
+                            "cidrBlocks": [
+                                "0.0.0.0/0"
+                            ],
+                            "description": "",
+                            "fromPort": 22,
+                            "ipv6CidrBlocks": [],
+                            "prefixListIds": [],
+                            "protocol": "tcp",
+                            "securityGroups": [],
+                            "self": false,
+                            "toPort": 22
+                        },
+                        {
+                            "cidrBlocks": [
+                                "0.0.0.0/0"
+                            ],
+                            "description": "",
+                            "fromPort": 443,
+                            "ipv6CidrBlocks": [],
+                            "prefixListIds": [],
+                            "protocol": "tcp",
+                            "securityGroups": [],
+                            "self": false,
+                            "toPort": 443
+                        }
+                    ],
+                    "name": "webapp-secgrp-1a73e76",
+                    "namePrefix": "",
+                    "ownerId": "000000000000",
+                    "revokeRulesOnDelete": false,
+                    "tags": {
+                        "Environment": "Development",
+                        "Name": "LocalStack-EC2",
+                        "Project": "Pulumi",
+                        "Resource": "EC2"
+                    },
+                    "tagsAll": {
+                        "Environment": "Development",
+                        "Name": "LocalStack-EC2",
+                        "Project": "Pulumi",
+                        "Resource": "EC2"
+                    },
+                    "vpcId": "vpc-10c19ea0"
+                },
+                "parent": "urn:pulumi:localstack::infrastucture::pulumi:pulumi:Stack::infrastucture-localstack",
+                "dependencies": [
+                    "urn:pulumi:localstack::infrastucture::aws:ec2/vpc:Vpc::webapp-vpc"
+                ],
+                "provider": "urn:pulumi:localstack::infrastucture::pulumi:providers:aws::default_6_32_0::4526f33a-1e17-432f-bc0a-5631d9326196",
+                "propertyDependencies": {
+                    "description": [],
+                    "egress": [],
+                    "ingress": [],
+                    "tags": [],
+                    "vpcId": [
+                        "urn:pulumi:localstack::infrastucture::aws:ec2/vpc:Vpc::webapp-vpc"
+                    ]
+                },
+                "created": "2024-05-02T12:49:42.7881925Z",
+                "modified": "2024-05-02T12:49:42.7881925Z"
+            },
+            {
+                "urn": "urn:pulumi:localstack::infrastucture::aws:ec2/routeTable:RouteTable::webapp-route-table",
+                "custom": true,
+                "id": "rtb-c090555c",
+                "type": "aws:ec2/routeTable:RouteTable",
+                "inputs": {
+                    "__defaults": [],
+                    "routes": [
+                        {
+                            "__defaults": [],
+                            "cidrBlock": "0.0.0.0/0",
+                            "gatewayId": "igw-16c7c778"
+                        }
+                    ],
+                    "tags": {
+                        "Environment": "Development",
+                        "Name": "LocalStack-VPC",
+                        "Project": "Pulumi",
+                        "Resource": "VPC"
+                    },
+                    "tagsAll": {
+                        "Environment": "Development",
+                        "Name": "LocalStack-VPC",
+                        "Project": "Pulumi",
+                        "Resource": "VPC"
+                    },
+                    "vpcId": "vpc-10c19ea0"
+                },
+                "outputs": {
+                    "__meta": "{\"e2bfb730-ecaa-11e6-8f88-34363bc7c4c0\":{\"create\":300000000000,\"delete\":300000000000,\"update\":120000000000}}",
+                    "arn": "arn:aws:ec2:us-east-2:000000000000:route-table/rtb-c090555c",
+                    "id": "rtb-c090555c",
+                    "ownerId": "000000000000",
+                    "propagatingVgws": [],
+                    "routes": [
+                        {
+                            "carrierGatewayId": "",
+                            "cidrBlock": "0.0.0.0/0",
+                            "coreNetworkArn": "",
+                            "destinationPrefixListId": "",
+                            "egressOnlyGatewayId": "",
+                            "gatewayId": "igw-16c7c778",
+                            "ipv6CidrBlock": "",
+                            "localGatewayId": "",
+                            "natGatewayId": "",
+                            "networkInterfaceId": "",
+                            "transitGatewayId": "",
+                            "vpcEndpointId": "",
+                            "vpcPeeringConnectionId": ""
+                        }
+                    ],
+                    "tags": {
+                        "Environment": "Development",
+                        "Name": "LocalStack-VPC",
+                        "Project": "Pulumi",
+                        "Resource": "VPC"
+                    },
+                    "tagsAll": {
+                        "Environment": "Development",
+                        "Name": "LocalStack-VPC",
+                        "Project": "Pulumi",
+                        "Resource": "VPC"
+                    },
+                    "vpcId": "vpc-10c19ea0"
+                },
+                "parent": "urn:pulumi:localstack::infrastucture::pulumi:pulumi:Stack::infrastucture-localstack",
+                "dependencies": [
+                    "urn:pulumi:localstack::infrastucture::aws:ec2/internetGateway:InternetGateway::webapp-igw",
+                    "urn:pulumi:localstack::infrastucture::aws:ec2/vpc:Vpc::webapp-vpc"
+                ],
+                "provider": "urn:pulumi:localstack::infrastucture::pulumi:providers:aws::default_6_32_0::4526f33a-1e17-432f-bc0a-5631d9326196",
+                "propertyDependencies": {
+                    "routes": [
+                        "urn:pulumi:localstack::infrastucture::aws:ec2/internetGateway:InternetGateway::webapp-igw"
+                    ],
+                    "tags": [],
+                    "vpcId": [
+                        "urn:pulumi:localstack::infrastucture::aws:ec2/vpc:Vpc::webapp-vpc"
+                    ]
+                },
+                "created": "2024-05-02T12:49:44.4961876Z",
+                "modified": "2024-05-02T12:49:44.4961876Z"
+            },
+            {
+                "urn": "urn:pulumi:localstack::infrastucture::aws:ec2/subnet:Subnet::webapp-subnet",
+                "custom": true,
+                "id": "subnet-4272e306",
+                "type": "aws:ec2/subnet:Subnet",
+                "inputs": {
+                    "__defaults": [
+                        "assignIpv6AddressOnCreation",
+                        "enableDns64",
+                        "enableResourceNameDnsARecordOnLaunch",
+                        "enableResourceNameDnsAaaaRecordOnLaunch",
+                        "ipv6Native"
+                    ],
+                    "assignIpv6AddressOnCreation": false,
+                    "cidrBlock": "192.168.0.0/24",
+                    "enableDns64": false,
+                    "enableResourceNameDnsARecordOnLaunch": false,
+                    "enableResourceNameDnsAaaaRecordOnLaunch": false,
+                    "ipv6Native": false,
+                    "mapPublicIpOnLaunch": true,
+                    "tags": {
+                        "Environment": "Development",
+                        "Name": "LocalStack-VPC",
+                        "Project": "Pulumi",
+                        "Resource": "VPC"
+                    },
+                    "tagsAll": {
+                        "Environment": "Development",
+                        "Name": "LocalStack-VPC",
+                        "Project": "Pulumi",
+                        "Resource": "VPC"
+                    },
+                    "vpcId": "vpc-10c19ea0"
+                },
+                "outputs": {
+                    "__meta": "{\"e2bfb730-ecaa-11e6-8f88-34363bc7c4c0\":{\"create\":600000000000,\"delete\":1200000000000},\"schema_version\":\"1\"}",
+                    "arn": "arn:aws:ec2:us-east-2:000000000000:subnet/subnet-4272e306",
+                    "assignIpv6AddressOnCreation": false,
+                    "availabilityZone": "us-east-2a",
+                    "availabilityZoneId": "use2-az1",
+                    "cidrBlock": "192.168.0.0/24",
+                    "customerOwnedIpv4Pool": "",
+                    "enableDns64": false,
+                    "enableLniAtDeviceIndex": 0,
+                    "enableResourceNameDnsARecordOnLaunch": false,
+                    "enableResourceNameDnsAaaaRecordOnLaunch": false,
+                    "id": "subnet-4272e306",
+                    "ipv6CidrBlock": "",
+                    "ipv6CidrBlockAssociationId": "",
+                    "ipv6Native": false,
+                    "mapCustomerOwnedIpOnLaunch": false,
+                    "mapPublicIpOnLaunch": true,
+                    "outpostArn": "",
+                    "ownerId": "000000000000",
+                    "privateDnsHostnameTypeOnLaunch": "ip-name",
+                    "tags": {
+                        "Environment": "Development",
+                        "Name": "LocalStack-VPC",
+                        "Project": "Pulumi",
+                        "Resource": "VPC"
+                    },
+                    "tagsAll": {
+                        "Environment": "Development",
+                        "Name": "LocalStack-VPC",
+                        "Project": "Pulumi",
+                        "Resource": "VPC"
+                    },
+                    "vpcId": "vpc-10c19ea0"
+                },
+                "parent": "urn:pulumi:localstack::infrastucture::pulumi:pulumi:Stack::infrastucture-localstack",
+                "dependencies": [
+                    "urn:pulumi:localstack::infrastucture::aws:ec2/vpc:Vpc::webapp-vpc"
+                ],
+                "provider": "urn:pulumi:localstack::infrastucture::pulumi:providers:aws::default_6_32_0::4526f33a-1e17-432f-bc0a-5631d9326196",
+                "propertyDependencies": {
+                    "cidrBlock": [],
+                    "mapPublicIpOnLaunch": [],
+                    "tags": [],
+                    "vpcId": [
+                        "urn:pulumi:localstack::infrastucture::aws:ec2/vpc:Vpc::webapp-vpc"
+                    ]
+                },
+                "created": "2024-05-02T12:49:51.6661148Z",
+                "modified": "2024-05-02T12:49:51.6661148Z"
+            },
+            {
+                "urn": "urn:pulumi:localstack::infrastucture::aws:ec2/routeTableAssociation:RouteTableAssociation::webapp-rta",
+                "custom": true,
+                "id": "rtbassoc-658d3227",
+                "type": "aws:ec2/routeTableAssociation:RouteTableAssociation",
+                "inputs": {
+                    "__defaults": [],
+                    "routeTableId": "rtb-c090555c",
+                    "subnetId": "subnet-4272e306"
+                },
+                "outputs": {
+                    "__meta": "{\"e2bfb730-ecaa-11e6-8f88-34363bc7c4c0\":{\"create\":300000000000,\"delete\":300000000000,\"update\":120000000000}}",
+                    "gatewayId": "",
+                    "id": "rtbassoc-658d3227",
+                    "routeTableId": "rtb-c090555c",
+                    "subnetId": "subnet-4272e306"
+                },
+                "parent": "urn:pulumi:localstack::infrastucture::pulumi:pulumi:Stack::infrastucture-localstack",
+                "dependencies": [
+                    "urn:pulumi:localstack::infrastucture::aws:ec2/routeTable:RouteTable::webapp-route-table",
+                    "urn:pulumi:localstack::infrastucture::aws:ec2/subnet:Subnet::webapp-subnet"
+                ],
+                "provider": "urn:pulumi:localstack::infrastucture::pulumi:providers:aws::default_6_32_0::4526f33a-1e17-432f-bc0a-5631d9326196",
+                "propertyDependencies": {
+                    "routeTableId": [
+                        "urn:pulumi:localstack::infrastucture::aws:ec2/routeTable:RouteTable::webapp-route-table"
+                    ],
+                    "subnetId": [
+                        "urn:pulumi:localstack::infrastucture::aws:ec2/subnet:Subnet::webapp-subnet"
+                    ]
+                },
+                "created": "2024-05-02T12:49:52.8918716Z",
+                "modified": "2024-05-02T12:49:52.8918716Z"
+            },
+            {
+                "urn": "urn:pulumi:localstack::infrastucture::aws:ec2/instance:Instance::webapp-instance",
+                "custom": true,
+                "id": "i-b9cc613dd5efe5084",
+                "type": "aws:ec2/instance:Instance",
+                "inputs": {
+                    "__defaults": [
+                        "getPasswordData",
+                        "sourceDestCheck",
+                        "userDataReplaceOnChange"
+                    ],
+                    "ami": "ami-0f09ed56128e994fe",
+                    "associatePublicIpAddress": true,
+                    "getPasswordData": false,
+                    "instanceType": "t2.micro",
+                    "sourceDestCheck": true,
+                    "subnetId": "subnet-4272e306",
+                    "tags": {
+                        "Environment": "Development",
+                        "Name": "LocalStack-EC2",
+                        "Project": "Pulumi",
+                        "Resource": "EC2"
+                    },
+                    "tagsAll": {
+                        "Environment": "Development",
+                        "Name": "LocalStack-EC2",
+                        "Project": "Pulumi",
+                        "Resource": "EC2"
+                    },
+                    "userData": "\n    #!/bin/bash\n    apt-get update\n    apt-get install curl\n    apt-get install nginx -y\n    systemctl start nginx\n    systemctl enable nginx\n    mkdir /var/www/html/\n    git clone https://github.com/jeffersonRibeiro/react-shopping-cart\n    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash\n    source ~/.bashrc\n    nvm install 14.17.3\n    nvm use 14.17.3\n    cd react-shopping-cart\n    npm install\n    npm run build\n    cp -r build/* /var/www/html/\n    rm -rf build\n    systemctl restart nginx\n    echo \"Done!\"\n    ",
+                    "userDataReplaceOnChange": false,
+                    "vpcSecurityGroupIds": [
+                        "sg-f01e5ada1f8697b50"
+                    ]
+                },
+                "outputs": {
+                    "__meta": "{\"e2bfb730-ecaa-11e6-8f88-34363bc7c4c0\":{\"create\":600000000000,\"delete\":1200000000000,\"read\":900000000000,\"update\":600000000000},\"schema_version\":\"1\"}",
+                    "ami": "ami-0f09ed56128e994fe",
+                    "arn": "arn:aws:ec2:us-east-2::instance/i-b9cc613dd5efe5084",
+                    "associatePublicIpAddress": true,
+                    "availabilityZone": "us-east-2a",
+                    "capacityReservationSpecification": null,
+                    "cpuOptions": null,
+                    "disableApiStop": false,
+                    "disableApiTermination": false,
+                    "ebsBlockDevices": [],
+                    "ebsOptimized": false,
+                    "enclaveOptions": null,
+                    "ephemeralBlockDevices": [],
+                    "getPasswordData": false,
+                    "hibernation": false,
+                    "hostId": "",
+                    "iamInstanceProfile": "",
+                    "id": "i-b9cc613dd5efe5084",
+                    "instanceInitiatedShutdownBehavior": "stop",
+                    "instanceLifecycle": "",
+                    "instanceMarketOptions": null,
+                    "instanceState": "running",
+                    "instanceType": "t2.micro",
+                    "ipv6AddressCount": 0,
+                    "ipv6Addresses": [],
+                    "keyName": "",
+                    "launchTemplate": null,
+                    "maintenanceOptions": null,
+                    "metadataOptions": null,
+                    "monitoring": false,
+                    "networkInterfaces": [],
+                    "outpostArn": "",
+                    "passwordData": "",
+                    "placementGroup": "",
+                    "placementPartitionNumber": 0,
+                    "primaryNetworkInterfaceId": "eni-4b96afbc",
+                    "privateDns": "ip-192-168-0-4.us-east-2.compute.internal",
+                    "privateDnsNameOptions": null,
+                    "privateIp": "192.168.0.4",
+                    "publicDns": "ec2-54-214-71-15.us-east-2.compute.amazonaws.com",
+                    "publicIp": "54.214.71.15",
+                    "rootBlockDevice": {
+                        "deleteOnTermination": true,
+                        "deviceName": "/dev/sda1",
+                        "encrypted": false,
+                        "iops": 0,
+                        "kmsKeyId": "",
+                        "tags": {},
+                        "tagsAll": {},
+                        "throughput": 0,
+                        "volumeId": "vol-e0d00d16",
+                        "volumeSize": 8,
+                        "volumeType": "gp2"
+                    },
+                    "secondaryPrivateIps": [],
+                    "securityGroups": [],
+                    "sourceDestCheck": true,
+                    "spotInstanceRequestId": "",
+                    "subnetId": "subnet-4272e306",
+                    "tags": {
+                        "Environment": "Development",
+                        "Name": "LocalStack-EC2",
+                        "Project": "Pulumi",
+                        "Resource": "EC2"
+                    },
+                    "tagsAll": {
+                        "Environment": "Development",
+                        "Name": "LocalStack-EC2",
+                        "Project": "Pulumi",
+                        "Resource": "EC2"
+                    },
+                    "tenancy": "default",
+                    "userData": "3bb8ad481a4d39c8c6a0a12028b9b612b7f5aed2",
+                    "userDataReplaceOnChange": false,
+                    "vpcSecurityGroupIds": []
+                },
+                "parent": "urn:pulumi:localstack::infrastucture::pulumi:pulumi:Stack::infrastucture-localstack",
+                "dependencies": [
+                    "urn:pulumi:localstack::infrastucture::aws:ec2/subnet:Subnet::webapp-subnet",
+                    "urn:pulumi:localstack::infrastucture::aws:ec2/securityGroup:SecurityGroup::webapp-secgrp"
+                ],
+                "provider": "urn:pulumi:localstack::infrastucture::pulumi:providers:aws::default_6_32_0::4526f33a-1e17-432f-bc0a-5631d9326196",
+                "propertyDependencies": {
+                    "ami": [],
+                    "associatePublicIpAddress": [],
+                    "instanceType": [],
+                    "subnetId": [
+                        "urn:pulumi:localstack::infrastucture::aws:ec2/subnet:Subnet::webapp-subnet"
+                    ],
+                    "tags": [],
+                    "userData": [],
+                    "vpcSecurityGroupIds": [
+                        "urn:pulumi:localstack::infrastucture::aws:ec2/securityGroup:SecurityGroup::webapp-secgrp"
+                    ]
+                },
+                "created": "2024-05-02T12:50:04.5459748Z",
+                "modified": "2024-05-02T12:50:04.5459748Z"
+            }
+        ]
+    }
+}

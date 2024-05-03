@@ -1,9 +1,10 @@
+encryptionsalt: v1:vRZDakG2TFE=:v1:7IJ4Bc+GkkfQ5oxx:Ogced+qrwCJtgpSJOXplROIJTpUSxQ==
 config:
   aws:accessKey: test
+  aws:endpoints:
+    - ec2: http://localhost:4566
+  aws:region: us-east-2
   aws:s3UsePathStyle: "true"
   aws:secretKey: test
   aws:skipCredentialsValidation: "true"
   aws:skipRequestingAccountId: "true"
-  aws:region: us-east-2
-  aws:endpoints:
-    - ec2: http://localhost:4566
